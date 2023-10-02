@@ -6,6 +6,9 @@ public class ClickableObject : MonoBehaviour
     [Tooltip("Event that gets triggered when the object is clicked.")]
     public UnityEvent OnClick;
 
+    [Tooltip("Controls whether the object can be clicked or not.")]
+    public bool Clickable = true;
+
     private MeshCollider meshCollider;
 
     private void Start()
@@ -22,7 +25,21 @@ public class ClickableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // Trigger the assigned UnityEvent
-        OnClick.Invoke();
+        // Check if the object is clickable
+        if (Clickable)
+        {
+            // Trigger the assigned UnityEvent
+            OnClick.Invoke();
+        }
+    }
+
+    public void MakeObjectClickable()
+    {
+        Clickable = true;
+    }
+
+    public void MakeObjectNotClickable()
+    {
+        Clickable = false;
     }
 }

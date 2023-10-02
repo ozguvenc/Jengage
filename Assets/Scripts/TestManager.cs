@@ -8,10 +8,8 @@ public class TestManager : MonoBehaviour
     public AudioClip CountdownEndSound;
     public AudioClip CountdownTickSound;
     public StackManager stackManagerReference;
-    public TextMeshPro countdownText; // Changed this line from TextMeshProUGUI to TextMeshPro
+    public TextMeshPro countdownText;
     public GameObject ResetButton;
-    public GameObject MoveCameraPanel;
-
     private AudioSource audioSource;
 
     private void Start()
@@ -35,10 +33,6 @@ public class TestManager : MonoBehaviour
         if (ResetButton == null)
         {
             Debug.LogError("ResetButton reference is not set in TestManager.");
-        }
-        else
-        {
-            ResetButton.SetActive(false); // Initially set the button to be inactive
         }
     }
 
@@ -76,16 +70,14 @@ public class TestManager : MonoBehaviour
         RemoveGlass();
         stackManagerReference.ToggleKinematic();
 
-        ResetButton.SetActive(true); // Enable the ResetButton after the countdown is over
-        MoveCameraPanel.SetActive(true);
-        countdownText.enabled = false; // Fixed line here
+        ResetButton.GetComponent<ClickableObject>().MakeObjectClickable();
     }
 
     public void ResetTest()
     {
         stackManagerReference.RebuildStack();
         stackManagerReference.ToggleKinematic();
-        ResetButton.SetActive(false);
+        ResetButton.GetComponent<ClickableObject>().MakeObjectNotClickable();
     }
 
     public void RemoveGlass()

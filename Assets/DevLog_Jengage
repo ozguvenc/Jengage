@@ -49,10 +49,31 @@ B - DEV LOG
 	+ 3x - StackManager Class
 		+ 31 - Create a tower automatically based on a given number of blocks
 		+ 32 - Read the JSON file and change block materials accordingly
+		+ 33 - Order the JSON file everytime the game is run based on the given criteria
+		- 34 - Repeat the aove changes for 7th and 8th grade
+
+
+    + 4x - ProcessUserData Class
+    	+ Create processuserclass
+    	- Repeat for 7th and 8th
+
+	+ 5x - TestManager Class
+		- Create TestManager Class
+		- Add UI button to initiate the test
+		- Add button to reset
+
+	+ 6x - InputManager Class
+		+ RotateManager
+		+ SwitchCamera
+
+
+	+ 7x - TooltipManager 
+
+	- 8x - Various classes and improvements					
 
 
 	- 9x - Testing, bug fixing, bonus imrpvoements
-		- 
+		- Add a unique mouse cursor
 
 C - BUG LOG
 - 00 -
