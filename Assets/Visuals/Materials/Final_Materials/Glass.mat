@@ -16,7 +16,7 @@ Material:
   - _ENABLE_FOG_ON_TRANSPARENT
   - _MASKMAP
   - _NORMALMAP_TANGENT_SPACE
-  - _REFRACTION_SPHERE
+  - _REFRACTION_THIN
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -265,7 +265,7 @@ Material:
     - _IOR: 1
     - _InitialBend: 1
     - _InvTilingScale: 0.5
-    - _Ior: 1.01
+    - _Ior: 1
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _Lightmapping: 1
@@ -292,7 +292,7 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RefractionMode: 1
-    - _RefractionModel: 2
+    - _RefractionModel: 3
     - _SSRefractionProjectionModel: 1
     - _SSSAndTransmissionType: 0
     - _ShiverDirectionality: 0.5
@@ -356,14 +356,14 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissiveColor: {r: 0.21404114, g: 0, b: 0, a: 1}
+    - _EmissiveColorLDR: {r: 0.5, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.23096885, g: 0.33779976, b: 0.35294116, a: 1}
     - _SpecularColor: {r: 0.8308824, g: 0.8308824, b: 0.8308824, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _TransmittanceColor: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
+    - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}

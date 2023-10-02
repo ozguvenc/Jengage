@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using TMPro;
+using TMPro; // TextMeshPro namespace
 
 public class TestManager : MonoBehaviour
 {
@@ -8,8 +8,9 @@ public class TestManager : MonoBehaviour
     public AudioClip CountdownEndSound;
     public AudioClip CountdownTickSound;
     public StackManager stackManagerReference;
-    public TextMeshProUGUI countdownText;
+    public TextMeshPro countdownText; // Changed this line from TextMeshProUGUI to TextMeshPro
     public GameObject ResetButton;
+    public GameObject MoveCameraPanel;
 
     private AudioSource audioSource;
 
@@ -28,7 +29,7 @@ public class TestManager : MonoBehaviour
 
         if (countdownText == null)
         {
-            Debug.LogError("Countdown TextMeshProUGUI reference is not set in TestManager.");
+            Debug.LogError("Countdown TextMeshPro reference is not set in TestManager."); // Changed error message for clarity
         }
 
         if (ResetButton == null)
@@ -76,6 +77,8 @@ public class TestManager : MonoBehaviour
         stackManagerReference.ToggleKinematic();
 
         ResetButton.SetActive(true); // Enable the ResetButton after the countdown is over
+        MoveCameraPanel.SetActive(true);
+        countdownText.SetActive(false);
     }
 
     public void ResetTest()

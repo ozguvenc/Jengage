@@ -106,8 +106,10 @@ public class StackManager : MonoBehaviour
         GameObject block = GameObject.CreatePrimitive(PrimitiveType.Cube);
         block.name = $"Block ({++currentBlockCount})";
         block.transform.SetParent(parent);
-
         block.transform.localScale = BlockSize;
+
+        // Add the HighlightObject component to the block
+        block.AddComponent<HighlightObject>();
 
         if (blockDataList != null && currentBlockCount <= blockDataList.Count)
         {
@@ -169,6 +171,17 @@ public class StackManager : MonoBehaviour
         // Add collision detection script to the block
         BlockCollisionHandler collisionHandler = block.AddComponent<BlockCollisionHandler>();
         collisionHandler.audioSource = audioSource;
+
+        if (blockDataList != null && currentBlockCount <= blockDataList.Count)
+        {
+            BlockInfo blockInfo = block.AddComponent<BlockInfo>();
+            RawDataModel data = blockDataList[currentBlockCount - 1];
+            blockInfo.GradeLevel = data.grade;
+            blockInfo.Domain = data.domain;
+            blockInfo.Cluster = data.cluster;
+            blockInfo.StandardID = data.standardid;
+            blockInfo.StandardDescription = data.standarddescription;
+        }
     }
 
     public void ToggleKinematic()
