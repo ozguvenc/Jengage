@@ -78,7 +78,7 @@ public class TestManager : MonoBehaviour
 
         ResetButton.SetActive(true); // Enable the ResetButton after the countdown is over
         MoveCameraPanel.SetActive(true);
-        countdownText.SetActive(false);
+        countdownText.enabled = false; // Fixed line here
     }
 
     public void ResetTest()
