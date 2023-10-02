@@ -12,26 +12,26 @@ public class StackManager : MonoBehaviour
     public Vector3 BlockSize = new Vector3(0.25f, 0.15f, 0.85f);
     public float HorizontalSpacing = 0.01f;
     public float VerticalSpacing = 0.01f;
-    public int BlockCount = 16;
     public Material[] Materials; // Assumes you have assigned 3 materials in the order: Glass, Wood, Stone
     public PhysicMaterial BlockPhysicsMaterial;
     public TextAsset ProcessedData; // This is where you'd assign your JSON file in the inspector
-
+    public AudioClip FallSound;
+    private bool isKinematic;
     private int currentBlockCount = 0;
-
     private List<RawDataModel> blockDataList;
-
-    [System.Serializable]
-    public class RawDataArrayWrapper
-    {
-        public RawDataModel[] items;
-    }
+    private Vector3 initialBaseAnchorPosition;
+    private Quaternion initialBaseAnchorRotation;
+    private Vector3 initialBaseAnchorScale;
 
     private void Start()
     {
+        initialBaseAnchorPosition = BaseAnchor.position;
+        initialBaseAnchorRotation = BaseAnchor.rotation;
+        initialBaseAnchorScale = BaseAnchor.localScale;
+        isKinematic = true;
+
         if (ProcessedData != null)
         {
-            // Log the JSON content to Unity console
             var jsonData = SimpleJSON.JSON.Parse(ProcessedData.text);
             if (jsonData != null && jsonData.IsArray)
             {
@@ -71,7 +71,7 @@ public class StackManager : MonoBehaviour
         }
 
         int layerNumber = 1;
-        while (currentBlockCount < BlockCount)
+        while (currentBlockCount < blockDataList.Count)
         {
             BuildLayer(layerNumber);
             layerNumber++;
@@ -85,7 +85,7 @@ public class StackManager : MonoBehaviour
         layer.transform.SetParent(LayersParent.transform);
 
         // Determine how many blocks to create in this layer
-        int blocksThisLayer = Mathf.Min(3, BlockCount - currentBlockCount);
+        int blocksThisLayer = Mathf.Min(3, blockDataList.Count - currentBlockCount);
         for (int i = 0; i < blocksThisLayer; i++)
         {
             BuildBlock(layer.transform);
@@ -116,6 +116,20 @@ public class StackManager : MonoBehaviour
             if (renderer && mastery >= 0 && mastery < Materials.Length)
             {
                 renderer.material = Materials[mastery];
+
+                // Set the tag based on the mastery/material
+                switch (Materials[mastery].name)
+                {
+                    case "Glass":
+                        block.tag = "Glass";
+                        break;
+                    case "Wood":
+                        block.tag = "Wood";
+                        break;
+                    case "Stone":
+                        block.tag = "Stone";
+                        break;
+                }
             }
         }
 
@@ -145,10 +159,22 @@ public class StackManager : MonoBehaviour
 
         Rigidbody rb = block.AddComponent<Rigidbody>();
         rb.isKinematic = true;
+
+        // Add AudioSource to the block and configure it
+        AudioSource audioSource = block.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f; // makes the audio 3D
+        audioSource.clip = FallSound;
+        audioSource.playOnAwake = false; // so that it doesn't play automatically
+
+        // Add collision detection script to the block
+        BlockCollisionHandler collisionHandler = block.AddComponent<BlockCollisionHandler>();
+        collisionHandler.audioSource = audioSource;
     }
 
     public void ToggleKinematic()
     {
+        isKinematic = !isKinematic;
+        Debug.Log("Block are kinematic = " + isKinematic);
         foreach (Transform layer in LayersParent.transform)
         {
             foreach (Transform block in layer)
@@ -160,5 +186,27 @@ public class StackManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RebuildStack()
+    {
+        // Restore the BaseAnchor's initial transform
+        BaseAnchor.position = initialBaseAnchorPosition;
+        BaseAnchor.rotation = initialBaseAnchorRotation;
+        BaseAnchor.localScale = initialBaseAnchorScale;
+
+        // Destroy all existing blocks
+        foreach (Transform child in LayersParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        currentBlockCount = 0;
+
+        // Ensure blocks are kinematic after rebuilding
+        isKinematic = true;
+
+        // Call BuildStack to rebuild the blocks
+        BuildStack();
     }
 }
