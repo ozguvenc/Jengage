@@ -5,36 +5,57 @@ Copyright: Oguz Guvenc
 LEGEND
 - Incomplete task	+ Complete task		x Scrapped task
 
-A - MILESTONES										Estimated LOEs
-.0x - Planning										
-.1x - 							
-.2x - 						
-.3x - 				
-.4x - 					
-.5x - 						
-.6x - 					
-.7x - 	
-.8x - 				
-.9x - 								
-1.0 - Release
-TOTAL											   12.0
+Suggested LOE:  4 hours
+Estimated LOE: 13 hours
+Actual LOE: ________
 
-B - CRITERIA and CONSTRATIONS
-	- Size Limit:
+A - MILESTONES										Estimated LOEs (hours)		Actual LOEs (hours)
+.0x - Planning										2							2
+.1x - Design Scene Elements							0.5							0.5
+.2x - Preliminary Physics Tests						1							1
+.3x - StackManager Class							2				
+.4x - ProcessUserData								1					
+.5x - TestManager Class								2						
+.6x - InputManager Class							1					
+.7x - InformationManager Class + FetchDataManager Class  1	
+.8x - Various classes and improvements				1				
+.9x - Testing, bug fixing, bonus imrpvoements		1								
+1.0 - Release and submission						0.5
+TOTAL											   13							3.5
 		
-	- Development Duration:
-		Preferred:
-		Committed:
-		
-C - DEV LOG
-	- 0x - Planning
-		- 01x - Research
-		
-	- 8x - Optional Improvements
+B - DEV LOG
+	+ 0x - Planning
+		+ Review client requirements and constraints
+		+ Review provided Jenga game
+		+ Review provided mockup scene
+		+ Research Jenga physics facts
+		+ Create rough draft of Game Design Document Google Doc
+			> https://tinyurl.com/jengagegdd
+		+ Design the Software Architecture
+		+ Design UI Mockup
+
+	+ 1x - Design Scene Elements
+		+ 
+		+ Design and test true size Jenga pieces
+		+ Design tables and rotators using Probuilder
+		+ Add grade level labels
+
+	+ 2x - Preliminary Physics Tests
+		+ Test true size Jenga pieces: 0.025 x 0.015 x 0.085
+			> Physics jitter due to small size and Default Contact Offset issues
+		+ Test large size Jenga pieces: 1.5 x 0.3 x 0.5; Default Contact Offset = 0.01; 
+			> Tests are successful using pieces with . Build the world at a comparable scale
+
+	+ 3x - StackManager Class
+		+ 31 - Create a tower automatically based on a given number of blocks
+		+ 32 - Read the JSON file and change block materials accordingly
+
+
+	- 9x - Testing, bug fixing, bonus imrpvoements
 		- 
 
-D - BUG LOG
+C - BUG LOG
 - 00 -
 
 
-E - QUESTIONS LOG
+D - QUESTIONS LOG

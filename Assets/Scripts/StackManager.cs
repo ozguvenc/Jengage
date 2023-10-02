@@ -32,7 +32,6 @@ public class StackManager : MonoBehaviour
         if (ProcessedData != null)
         {
             // Log the JSON content to Unity console
-            Debug.Log(ProcessedData.text);
             var jsonData = SimpleJSON.JSON.Parse(ProcessedData.text);
             if (jsonData != null && jsonData.IsArray)
             {
