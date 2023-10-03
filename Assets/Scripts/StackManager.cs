@@ -209,7 +209,6 @@ public class StackManager : MonoBehaviour
         }
 
         isKinematic = !isKinematic;
-        Debug.Log("Blocks are kinematic = " + isKinematic);
 
         foreach (Transform layer in currentConfig.LayersParent.transform)
         {
