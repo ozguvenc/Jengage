@@ -1,8 +1,10 @@
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class StackConfig
 {
+    public TextMeshPro[] ToolTipTextBoxes;
     public string GradeName;
     public Transform BaseAnchor;
     public GameObject LayersParent;

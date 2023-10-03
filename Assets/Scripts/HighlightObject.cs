@@ -24,7 +24,6 @@ public class HighlightObject : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log($"{gameObject.name} is hovered over."); // Debug message to confirm hover
         SetEmissionColor(highlightColor * highlightEmissionStrength);
     }
 
